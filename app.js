@@ -98,15 +98,31 @@ function fp(rs){const x=rs.filter(r=>r.prob);return x.length?'<ol>'+x.map(r=>'<l
 const inR=()=>{const da=$('r_a').value,db=$('r_b').value;return rows.filter(r=>r.date&&r.date>=da&&r.date<=db).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))};
 function build(){const da=$('r_a').value,db=$('r_b').value,p=da+'_'+db,f=$('r_md').value=='f',rs=inR();
  const sc=grp(rs,st),tot=grp(rs,()=>'x').x||{n:0,s:0,c:0};let n=0;const N=()=>(++n)+'. ';
- let h='<h3>ບົດລາຍງານບັນທຶກການສອນ ວັນທີ '+fd(da)+' – '+fd(db)+'</h3><p>ຜູ້ລາຍງານ: '+esc((rs.find(r=>r.observer)||{}).observer||'………………………………')+'</p>';
- h+='<h4>'+N()+'ພາບລວມ</h4><table><tr><td>ຈຳນວນຄັ້ງທີ່ບັນທຶກທັງໝົດ<td>'+rs.length+'<tr><td>ຈຳນວນຫ້ອງທີ່ບັນທຶກ<td>'+new Set(rs.map(r=>r.room)).size+'<tr><td>ຈຳນວນອາຈານທີ່ໄດ້ຮັບການບັນທຶກ<td>'+new Set(rs.map(r=>nz(r.teacher)).filter(Boolean)).size+'<tr><td>ນັກຮຽນສະເລ່ຍຕໍ່ຫ້ອງ<td>'+avg(tot)+'<tr><td>ຕາມຕາຕະລາງ<td>'+((sc['ຕາຕະລາງ']||{}).n||0)+'<tr><td>ປ່ຽນວິຊາ<td>'+((sc['ປ່ຽນວິຊາ']||{}).n||0)+'<tr><td>ບໍ່ມີໃນຕາຕະລາງ<td>'+((sc['ບໍ່ມີໃນຕາຕະລາງ']||{}).n||0)+'</table>';
- if(f)h+='<h4>'+N()+'ລາຍງານຫ້ອງຮຽນ</h4>'+fm(rs)+'<h4>'+N()+'ລາຍງານອາຈານຜູ້ສອນ</h4>'+ft(rs)+'<h4>'+N()+'ບັນຫາ ແລະຂໍ້ສະເໜີ</h4>'+fp(rs);else h+=nar(rs)+rm(rs).replace('<h4>','<h4>'+N());
- h+=tb(N()+'ວິຊາ',grp(rs,r=>r.subject))+tb(N()+'ເວລາ',grp(rs,r=>r.time));
- h+='<h4>'+N()+'ລາຍລະອຽດການບັນທຶກ</h4>'+(rs.length?'<table><tr><th>ວັນທີ<th>ເວລາ<th>ຫ້ອງ<th>ອາຈານ<th>ວິຊາ<th>ລະດັບ<th>ນັກຮຽນ<th>ລາຍລະອຽດ</tr>'+rs.map(r=>'<tr><td>'+fd(r.date)+'<td>'+esc(r.time)+'<td>'+esc(r.room)+'<td>'+esc(r.teacher)+'<td>'+esc(r.subject)+'<td>'+esc(lv(r))+'<td>'+esc(r.students)+'<td>'+esc(dtl(r))).join('')+'</table>':'<p>ບໍ່ມີຂໍ້ມູນໃນຊ່ວງນີ້</p>');
+ let h='<h3>ບົດລາຍງານການສັງເກດການສອນ ວັນທີ '+fd(da)+' – '+fd(db)+'</h3><p>ຜູ້ລາຍງານ: '+esc((rs.find(r=>r.observer)||{}).observer||'………………………………')+'</p>';
+ h+='<h4>'+N()+'ພາບລວມ</h4><table><tr><td>ຈຳນວນຄັ້ງທີ່ສັງເກດທັງໝົດ<td>'+rs.length+'<tr><td>ຈຳນວນຫ້ອງທີ່ສັງເກດ<td>'+new Set(rs.map(r=>r.room)).size+'<tr><td>ຈຳນວນອາຈານທີ່ໄດ້ຮັບການສັງເກດ<td>'+new Set(rs.map(r=>nz(r.teacher)).filter(Boolean)).size+'<tr><td>ນັກຮຽນສະເລ່ຍຕໍ່ຫ້ອງ<td>'+avg(tot)+'<tr><td>ຕາມຕາຕະລາງ<td>'+((sc['ຕາມຕາຕະລາງ']||{}).n||0)+'<tr><td>ປ່ຽນວິຊາ<td>'+((sc['ປ່ຽນວິຊາ']||{}).n||0)+'<tr><td>ບໍ່ມີໃນຕາຕະລາງ<td>'+((sc['ບໍ່ມີໃນຕາຕະລາງ']||{}).n||0)+'</table>';
+ if(f)h+='<h4>'+N()+'ລາຍງານຕາມຫ້ອງຮຽນ</h4>'+fm(rs)+'<h4>'+N()+'ລາຍງານຕາມອາຈານຜູ້ສອນ</h4>'+ft(rs)+'<h4>'+N()+'ບັນຫາ ແລະຂໍ້ສະເໜີ</h4>'+fp(rs);else h+=nar(rs)+rm(rs).replace('<h4>','<h4>'+N());
+ h+=tb(N()+'ຕາມວິຊາ',grp(rs,r=>r.subject))+tb(N()+'ຕາມເວລາ',grp(rs,r=>r.time));
+ h+='<h4>'+N()+'ລາຍລະອຽດການສັງເກດ</h4>'+(rs.length?'<table><tr><th>ວັນທີ<th>ເວລາ<th>ຫ້ອງ<th>ອາຈານ<th>ວິຊາ<th>ລະດັບ<th>ນັກຮຽນ<th>ລາຍລະອຽດ</tr>'+rs.map(r=>'<tr><td>'+fd(r.date)+'<td>'+esc(r.time)+'<td>'+esc(r.room)+'<td>'+esc(r.teacher)+'<td>'+esc(r.subject)+'<td>'+esc(lv(r))+'<td>'+esc(r.students)+'<td>'+esc(dtl(r))).join('')+'</table>':'<p>ບໍ່ມີຂໍ້ມູນໃນຊ່ວງນີ້</p>');
  h+='<h4>'+N()+'ສະຫຼຸບ ຂໍ້ສະເໜີ ແລະໝາຍເຫດ</h4><div class="box">&nbsp;</div>';$('rep').innerHTML=h;return p}
-$('ai').onclick=()=>{const rs=inR();if(!rs.length)return alert('ບໍ່ມີຂໍ້ມູນໃນຊ່ວງວັນທີນີ້');
- const t='ຈົ່ງຂຽນບົດລາຍງານການສັງເກດການສອນຂອງສູນພາສາລັກກີ້ ວັນທີ '+fd($('r_a').value)+' ຫາ '+fd($('r_b').value)+' ເປັນພາສາລາວທີ່ເປັນທາງການ ສຸພາບ ແຍກຕາມຫ້ອງ: ອາຈານຜູ້ສອນ, ສະພາບຫ້ອງຮຽນ, ການສອນຂອງອາຈານ, ບັນຫາທີ່ພົບ ແລະຂໍ້ສະເໜີ. ໃຊ້ສະເພາະຂໍ້ມູນຂ້າງລຸ່ມ ຫ້າມແຕ່ງຂໍ້ມູນເພີ່ມ.\n\n'+rs.map(r=>['ຫ້ອງ '+r.room,'ວັນທີ '+fd(r.date),r.time,'ວິຊາ '+(r.subject||'-'),'ອາຈານ '+tn(r)+tyx(r),'ນັກຮຽນ '+(r.students==null?'-':r.students),r.cond&&'ສະພາບຫ້ອງ: '+r.cond,r.teach&&'ການສອນ: '+r.teach,r.prob&&'ບັນຫາ: '+r.prob,r.details&&'ໝາຍເຫດ: '+r.details].filter(Boolean).join(' | ')).join('\n');
- navigator.clipboard.writeText(t).then(()=>alert('ສຳເນົາແລ້ວ ເອົາໄປວາງໃນ AI (Claude / ChatGPT / Gemini) ໄດ້ເລີຍ'),()=>prompt('ສຳເນົາຂໍ້ຄວາມນີ້:',t))};
+$('ai').onclick = async () => {
+    const reportContent = $('rep').innerText;
+    
+    if (!reportContent.trim() || reportContent.includes('ບໍ່ມີຂໍ້ມູນ')) {
+        alert('ກະລຸນາກົດປຸ່ມ "ສ້າງບົດລາຍງານ" ກ່ອນ!');
+        return;
+    }
+    
+    const promptText = `ຊ່ວຍກວດສອບ ແລະ ປັບປຸງແກ້ໄຂສຳນວນພາສາລາວຂອງບົດລາຍງານລຸ່ມນີ້ ໃຫ້ເປັນທາງການ ສຸພາບ ແລະ ອ່ານງ່າຍຂຶ້ນ (ໂດຍຮັກສາໂຄງສ້າງ ແລະ ເນື້ອຫາເດີມໄວ້ ບໍ່ສ້າງໃໝ່):\n\n` + reportContent;
+    
+    try {
+        await navigator.clipboard.writeText(promptText);
+        alert('✨ ຄັດລອກບົດລາຍງານຮຽບຮ້ອຍແລ້ວ!\nກຳລັງເປີດໜ້າ AI ໃຫ້... ພຽງແຕ່ກົດວາງ (Ctrl+V) ແລ້ວສົ່ງໃຫ້ AI ໄດ້ເລີຍ!');
+        window.open('https://aistudio.google.com', '_blank');
+    } catch (e) {
+        alert('ບໍ່ສາມາດຄັດລອກໄດ້ອັດຕະໂນມັດ: ' + e.message);
+    }
+};
+
 $('gen').onclick=build;$('prt').onclick=()=>{if(!$('rep').innerHTML.trim())build();if(!rows.length)return alert('ຍັງບໍ່ມີຂໍ້ມູນທີ່ບັນທຶກ');try{print()}catch(e){alert('ພິມບໍ່ໄດ້ໃນໜ້ານີ້ — ດາວໂຫຼດແລ້ວພິມຈາກ Word')}};
 function dls(name,data){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'text/plain;charset=utf-8'}));a.download=name;document.body.appendChild(a);a.click();a.remove()}
 $('dlh').onclick=()=>{if(!$('rep').innerHTML.trim())build();const p=$('r_a').value+'_'+$('r_b').value;dls('report-'+p+'.html','<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{font-family:"Phetsarath OT",sans-serif}table{border-collapse:collapse;width:100%}th,td{border:1px solid #888;padding:4px 6px;vertical-align:top}th{background:#2E7DC4;color:#fff}h2,h3{text-align:center}</style></head><body>'+$('rep').innerHTML+'</body></html>')};
