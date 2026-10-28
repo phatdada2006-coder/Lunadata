@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="lo"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ລະບົບບັນທຶກຂໍ້ມູນ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="top"><div class="wrap topin">
+<div class="brand"><div class="logo">ບ</div><div><b>ລະບົບບັນທຶກຂໍ້ມູນ</b><small>ການສັງເກດການສອນ</small></div></div>
+<nav><button data-t="entry" class="on">📝 ບັນທຶກ</button><button data-t="list">📋 ປະຫວັດ</button><button data-t="report">📊 ບົດລາຍງານ</button></nav>
+</div></header>
+<section class="hero"><div class="wrap">
+<h1>ລະບົບບັນທຶກຂໍ້ມູນ</h1>
+<p>ເກັບຂໍ້ມູນການສັງເກດແຕ່ລະຫ້ອງ ແລະສະຫຼຸບເປັນບົດລາຍງານປະຈຳເດືອນ</p>
+<div id="stats" class="stats"></div></div></section>
+<main class="wrap">
+<section id="entry" class="split">
+<div class="card"><div class="ch"><h2>ແບບຟອມບັນທຶກ</h2><span id="ok"></span></div>
+<h3 class="gt">① ຂໍ້ມູນຫ້ອງຮຽນ</h3><div class="g">
+<div><label>ວັນທີ</label><input type="date" id="f_date"></div>
+<div><label>ພາກ</label><select id="f_sess"><option value="1">ພາກ 1 · ຈັນ–ພະຫັດ</option><option value="2">ພາກ 2 · ເສົາ–ອາທິດ</option></select></div>
+<div><label>ເວລາ</label><select id="f_time"></select></div>
+<div><label>ຫ້ອງ</label><input id="f_room" list="dl_r" placeholder="303"></div>
+<div><label>ຊື່ອາຈານຜູ້ສອນ</label><input id="f_tn" list="dl_t" placeholder="ພິມຊື່ອາຈານ"></div>
+<div><label>ປະເພດຜູ້ສອນ</label><select id="f_ty"><option value="">ອາຈານປະຈຳ</option><option>ອາຈານໃໝ່ທົດລອງສອນ</option><option>ອາຈານສອນແທນ</option></select></div>
+<div><label>ວິຊາ</label><input id="f_sub" list="dl_s"></div>
+<div><label>ລະດັບ</label><input id="f_lv"></div>
+<div><label>ຈຳນວນນັກຮຽນ</label><input type="number" min="0" id="f_n"></div>
+<div><label>ຜູ້ບັນທຶກ</label><input id="f_ob"></div></div>
+<div class="hint" id="hint">💡 ເລືອກວັນທີ, ເວລາ ແລະຫ້ອງ ລະບົບຈະດຶງວິຊາຕາມຕາຕະລາງມາໃສ່ໃຫ້ ແລະລະດັບຕາມຫ້ອງມາໃສ່ໃຫ້ (ແກ້ໄຂໄດ້).</div>
+<h3 class="gt">② ລາຍລະອຽດການບັນທຶກ (ຂຽນສັ້ນໆໄດ້ ລະບົບຈະຈັດເປັນຄຳທາງການໃນບົດລາຍງານ)</h3><div class="g">
+<div><label>ສະພາບຫ້ອງຮຽນ</label><textarea id="f_c" placeholder="ເຊັ່ນ ນັກຮຽນຕັ້ງໃຈ ຫ້ອງສະອາດ ອຸປະກອນຄົບ"></textarea></div>
+<div><label>ການສອນຂອງອາຈານ</label><textarea id="f_t" placeholder="ເຊັ່ນ ອະທິບາຍຊັດເຈນ ໃຫ້ນັກຮຽນມີສ່ວນຮ່ວມ"></textarea></div>
+<div><label>ບັນຫາທີ່ພົບ / ຂໍ້ສະເໜີ</label><textarea id="f_p" placeholder="ເຊັ່ນ ນັກຮຽນມາຊ້າ ຄວນເພີ່ມກິດຈະກຳ (ປະໄວ້ຫວ່າງຖ້າບໍ່ມີ)"></textarea></div>
+<div><label>ໝາຍເຫດອື່ນໆ</label><textarea id="f_d"></textarea></div></div>
+<div class="act"><button class="btn" id="save">ບັນທຶກ</button> <button class="btn s hide" id="cancel">ຍົກເລີກການແກ້ໄຂ</button></div></div>
+<aside class="card side"><div class="ch"><h2>ຄາບຮຽນຂອງວັນທີ່ເລືອກ</h2></div><div id="cv"></div><div class="ch" style="margin-top:18px"><h2>ວິທີໃຊ້ງານ</h2></div>
+<ol class="steps"><li><b>ເລືອກວັນທີ · ເວລາ · ຫ້ອງ</b><span>ລະບົບດຶງວິຊາຕາມຕາຕະລາງມາໃຫ້</span></li><li><b>ຕື່ມຂໍ້ມູນຕາມການສັງເກດ</b><span>ຈຳນວນນັກຮຽນ ແລະລາຍລະອຽດ</span></li><li><b>ກົດບັນທຶກ</b><span>ເບິ່ງໄດ້ໃນແຖບ "ປະຫວັດ"</span></li><li><b>ໝົດເດືອນ → ບົດລາຍງານ</b><span>ສະຫຼຸບແຕ່ລະຫ້ອງ ພິມ ຫຼືດາວໂຫຼດ</span></li></ol>
+<h3 class="gt">ຄວາມໝາຍສະຖານະ</h3>
+<p><span class="tag ok">ຕາມຕາຕະລາງ</span> <span class="tag wa">ປ່ຽນຄູ / ປ່ຽນວິຊາ</span> <span class="tag er">ບໍ່ມີໃນຕາຕະລາງ</span></p></aside>
+<datalist id="dl_r"></datalist><datalist id="dl_t"></datalist><datalist id="dl_s"></datalist>
+</section>
+<section id="list" class="hide">
+<div class="card noprint"><div class="ch"><h2>ສຳຮອງຂໍ້ມູນ</h2></div><p class="mut">ຂໍ້ມູນເກັບໃນເບຣາເຊີຂອງເຄື່ອງນີ້ ຄວນສຳຮອງທຸກອາທິດ ແລະກ່ອນລ້າງເບຣາເຊີ/ປ່ຽນເຄື່ອງ.</p><p><button class="btn s" id="bk">⬇ ສຳຮອງຂໍ້ມູນ (JSON)</button> <button class="btn s" id="clr">🗑 ລົບຂໍ້ມູນທັງໝົດ</button> <label class="btn s imp">⬆ ນຳເຂົ້າຂໍ້ມູນ<input type="file" id="im" accept=".json" style="display:none"></label></p></div>
+<div class="card"><div class="ch"><h2>ປະຫວັດການບັນທຶກ</h2></div><input id="q" class="noprint" placeholder="🔍 ຄົ້ນຫາ ຄູ / ຫ້ອງ / ວິຊາ / ວັນທີ..."><div class="sc"><div id="lt"></div></div></div></section>
+<section id="report" class="hide">
+<div class="card noprint"><div class="ch"><h2>ສ້າງບົດລາຍງານ (ເລືອກຊ່ວງວັນທີ ສ້າງຕອນໃດກໍໄດ້)</h2></div><div class="bar"><div><label>ຈາກວັນທີ</label><input type="date" id="r_a"></div><div><label>ເຖິງວັນທີ</label><input type="date" id="r_b"></div>
+<div><label>ຮູບແບບ</label><select id="r_md"><option value="f">ທາງການ (ລະບົບຈັດຄຳໃຫ້)</option><option value="r">ຕາມທີ່ບັນທຶກ</option></select></div><button class="btn" id="gen">ສ້າງບົດລາຍງານ</button><button class="btn s" id="prt">🖨 ພິມ</button><button class="btn s" id="dlh">ດາວໂຫຼດ (Word)</button><button class="btn s" id="dlc">ດາວໂຫຼດ CSV</button><button class="btn s" id="ai">✨ ສຳເນົາໃຫ້ AI ປັບຄຳ</button></div>
+<p class="mut">ບົດລາຍງານແກ້ໄຂໄດ້ເລີຍ: ກົດໃສ່ຂໍ້ຄວາມແລ້ວພິມທັບ. ດາວໂຫຼດເປັນ .html ເປີດໃນ Word ແລ້ວແກ້ໄຂຕໍ່ໄດ້.</p></div>
+<div id="rep" contenteditable="true"></div></section>
+</main>
+<footer class="noprint">© ລະບົບບັນທຶກຂໍ້ມູນ · <span id="dbs"></span> <button class="btn s" id="lo" style="padding:3px 12px">ອອກຈາກລະບົບ</button></footer>
+<div id="lg" class="hide"><div class="card"><div class="ch"><h2>🔒 ເຂົ້າສູ່ລະບົບ</h2></div><label>ອີເມວ</label><input type="email" id="em" autocomplete="username"><label style="margin-top:8px">ລະຫັດຜ່ານ</label><input type="password" id="pw" autocomplete="current-password"><p id="lge" style="color:#c0392b"></p><p><button class="btn" id="lgb">ເຂົ້າ</button></p></div></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="app.js"></script></body></html>
